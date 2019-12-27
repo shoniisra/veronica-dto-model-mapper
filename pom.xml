@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.rolandopalermo.facturacion.ec</groupId>
     <artifactId>veronica-dto-model-mapper</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Veronica DTO to Model mapper</name>
     <description>Generate model objects from Veronica DTOs for Ecuadorian electronic invoicing applications
@@ -17,7 +15,7 @@
         <url>https://github.com/rolandopalermo/veronica-dto-model-mapper.git</url>
         <connection>scm:git:git://github.com/rolandopalermo/veronica-dto-model-mapper.git</connection>
         <developerConnection>scm:git:git@github.com:rolandopalermo/veronica-dto-model-mapper.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>veronica-dto-model-mapper-1.0.0</tag>
     </scm>
 
     <licenses>
