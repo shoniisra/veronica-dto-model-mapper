@@ -10,8 +10,8 @@ public class InfoNotaDebitoMapper implements Mapper<InfoNotaDebitoDTO, InfoNotaD
 
     private Mapper<ImpuestoDTO, Impuesto> impuestoNotaDebitoMapper;
 
-    public InfoNotaDebitoMapper(Mapper<ImpuestoDTO, Impuesto> impuestoNotaDebitoMapper) {
-        this.impuestoNotaDebitoMapper = impuestoNotaDebitoMapper;
+    public InfoNotaDebitoMapper() {
+        this.impuestoNotaDebitoMapper = new ImpuestoMapper();
     }
 
     @Override

@@ -16,12 +16,11 @@ import java.util.stream.Collectors;
 
 public class RespuestaComprobanteMapper {
 
-    private Mapper<Mensaje, MensajeDTO> mensajeRecepcionMapper;
+    private Mapper<Mensaje, MensajeDTO> mensajeAutorizacionMapper;
     protected JaxbService<RespuestaComprobante> jaxbConverter;
 
-    public RespuestaComprobanteMapper(Mapper<Mensaje, MensajeDTO> mensajeRecepcionMapper,
-                                      JaxbService<RespuestaComprobante> jaxbConverter) {
-        this.mensajeRecepcionMapper = mensajeRecepcionMapper;
+    public RespuestaComprobanteMapper(JaxbService<RespuestaComprobante> jaxbConverter) {
+        this.mensajeAutorizacionMapper = new MensajeAutorizacionMapper();
         this.jaxbConverter = jaxbConverter;
     }
 
@@ -41,7 +40,7 @@ public class RespuestaComprobanteMapper {
                             autorizacionDTO.setEstado(autorizacion.getEstado());
                             autorizacionDTO.setNumeroAutorizacion(autorizacion.getNumeroAutorizacion());
                             autorizacionDTO.setFechaAutorizacion(fechaAutorizacion);
-                            autorizacionDTO.setMensajes(getMensajeRecepcionMapper().convertAll(autorizacion.getMensajes().getMensaje()));
+                            autorizacionDTO.setMensajes(getMensajeAutorizacionMapper().convertAll(autorizacion.getMensajes().getMensaje()));
                             return autorizacionDTO;
                         }).collect(Collectors.toList());
                 if (!autorizaciones.isEmpty()) {
@@ -51,7 +50,7 @@ public class RespuestaComprobanteMapper {
                     dto.setNumeroComprobantes(respuestaComprobante.getNumeroComprobantes());
                     dto.setAutorizaciones(autorizaciones);
                     try {
-                        dto.setContentAsXML(jaxbConverter.convertFromObjectToString(respuestaComprobante));
+                        dto.setContentAsXML(getJaxbConverter().convertFromObjectToString(respuestaComprobante));
                     } catch (IOException ex) {
                         throw new VeronicaException("Ocurrió un error al procesar la respuesta del SRI");
                     }
@@ -61,12 +60,20 @@ public class RespuestaComprobanteMapper {
         return dto;
     }
 
-    public Mapper<Mensaje, MensajeDTO> getMensajeRecepcionMapper() {
-        return mensajeRecepcionMapper;
+    public Mapper<Mensaje, MensajeDTO> getMensajeAutorizacionMapper() {
+        return mensajeAutorizacionMapper;
     }
 
-    public void setMensajeRecepcionMapper(Mapper<Mensaje, MensajeDTO> mensajeRecepcionMapper) {
-        this.mensajeRecepcionMapper = mensajeRecepcionMapper;
+    public void setMensajeAutorizacionMapper(Mapper<Mensaje, MensajeDTO> mensajeAutorizacionMapper) {
+        this.mensajeAutorizacionMapper = mensajeAutorizacionMapper;
+    }
+
+    public JaxbService<RespuestaComprobante> getJaxbConverter() {
+        return jaxbConverter;
+    }
+
+    public void setJaxbConverter(JaxbService<RespuestaComprobante> jaxbConverter) {
+        this.jaxbConverter = jaxbConverter;
     }
 
 }

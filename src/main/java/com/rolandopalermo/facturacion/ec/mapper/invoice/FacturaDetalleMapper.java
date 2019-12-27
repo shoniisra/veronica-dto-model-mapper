@@ -3,6 +3,8 @@ package com.rolandopalermo.facturacion.ec.mapper.invoice;
 import com.rolandopalermo.facturacion.ec.dto.v1.DetAdicionalDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.ImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDetalleDTO;
+import com.rolandopalermo.facturacion.ec.mapper.DetAdicionalMapper;
+import com.rolandopalermo.facturacion.ec.mapper.ImpuestoMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.modelo.DetAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.Impuesto;
@@ -14,10 +16,9 @@ public class FacturaDetalleMapper implements Mapper<FacturaDetalleDTO, FacturaDe
     private Mapper<ImpuestoDTO, Impuesto> impuestoMapper;
 
 
-    public FacturaDetalleMapper(Mapper<DetAdicionalDTO, DetAdicional> detAdicionalMapper,
-                                Mapper<ImpuestoDTO, Impuesto> impuestoMapper) {
-        this.detAdicionalMapper = detAdicionalMapper;
-        this.impuestoMapper = impuestoMapper;
+    public FacturaDetalleMapper() {
+        this.detAdicionalMapper = new DetAdicionalMapper();
+        this.impuestoMapper = new ImpuestoMapper();
     }
 
     @Override

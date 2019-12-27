@@ -1,14 +1,11 @@
 package com.rolandopalermo.facturacion.ec.mapper.withholding;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.CampoAdicionalDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.ImpuestoDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.InfoTributariaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.InfoRetencionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.RetencionDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.retencion.ComprobanteRetencion;
 import com.rolandopalermo.facturacion.ec.modelo.retencion.Impuesto;
@@ -18,19 +15,12 @@ import java.util.Optional;
 
 public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> implements Mapper<RetencionDTO, ComprobanteRetencion> {
 
-    private Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper;
-    private Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper;
     private Mapper<InfoRetencionDTO, InfoCompRetencion> infoCompRetencionMapper;
     private Mapper<ImpuestoDTO, Impuesto> impuestoMapper;
 
-    public RetencionMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper,
-                           Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper,
-                           Mapper<InfoRetencionDTO, InfoCompRetencion> infoCompRetencionMapper,
-                           Mapper<ImpuestoDTO, Impuesto> impuestoMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
-        this.infoTributariaMapper = infoTributariaMapper;
-        this.infoCompRetencionMapper = infoCompRetencionMapper;
-        this.impuestoMapper = impuestoMapper;
+    public RetencionMapper() {
+        this.infoCompRetencionMapper = new InfoCompRetencionMapper();
+        this.impuestoMapper = new ImpuestoMapper();
     }
 
     @Override
@@ -57,28 +47,12 @@ public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> imp
         return Optional.ofNullable(comprobanteDTO).map(RetencionDTO::getInfoRetencion).map(InfoRetencionDTO::getFechaEmision).orElse(null);
     }
 
-    protected Mapper<CampoAdicionalDTO, CampoAdicional> getCampoAdicionalMapper() {
-        return campoAdicionalMapper;
-    }
-
     public Mapper<ImpuestoDTO, Impuesto> getImpuestoMapper() {
         return impuestoMapper;
     }
 
     public void setImpuestoMapper(Mapper<ImpuestoDTO, Impuesto> impuestoMapper) {
         this.impuestoMapper = impuestoMapper;
-    }
-
-    public void setCampoAdicionalMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
-    }
-
-    protected Mapper<InfoTributariaDTO, InfoTributaria> getInfoTributariaMapper() {
-        return infoTributariaMapper;
-    }
-
-    public void setInfoTributariaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
-        this.infoTributariaMapper = infoTributariaMapper;
     }
 
     protected Mapper<InfoRetencionDTO, InfoCompRetencion> getInfoCompRetencionMapper() {

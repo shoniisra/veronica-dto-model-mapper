@@ -3,6 +3,7 @@ package com.rolandopalermo.facturacion.ec.mapper.cm;
 import com.rolandopalermo.facturacion.ec.dto.v1.TotalImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.InfoNotaCreditoDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
+import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoNotaCreditoMapper;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.InfoNotaCredito;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.TotalImpuesto;
 
@@ -10,8 +11,8 @@ public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNot
 
     private Mapper<TotalImpuestoDTO, TotalImpuesto> totalImpuestoNotaCreditoMapper;
 
-    public InfoNotaCreditoMapper(Mapper<TotalImpuestoDTO, TotalImpuesto> totalImpuestoNotaCreditoMapper) {
-        this.totalImpuestoNotaCreditoMapper = totalImpuestoNotaCreditoMapper;
+    public InfoNotaCreditoMapper() {
+        this.totalImpuestoNotaCreditoMapper = new TotalImpuestoNotaCreditoMapper();
     }
 
     @Override

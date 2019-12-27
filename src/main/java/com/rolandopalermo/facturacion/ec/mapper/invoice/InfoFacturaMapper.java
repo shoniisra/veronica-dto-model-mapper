@@ -4,6 +4,8 @@ import com.rolandopalermo.facturacion.ec.dto.v1.PagoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.TotalImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoFacturaDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
+import com.rolandopalermo.facturacion.ec.mapper.PagoMapper;
+import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoMapper;
 import com.rolandopalermo.facturacion.ec.modelo.Pago;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoFactura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.TotalImpuesto;
@@ -13,10 +15,9 @@ public class InfoFacturaMapper implements Mapper<InfoFacturaDTO, InfoFactura> {
     private Mapper<TotalImpuestoDTO, TotalImpuesto> totalImpuestoMapper;
     private Mapper<PagoDTO, Pago> pagoMapper;
 
-    public InfoFacturaMapper(Mapper<TotalImpuestoDTO, TotalImpuesto> totalImpuestoMapper,
-                             Mapper<PagoDTO, Pago> pagoMapper) {
-        this.totalImpuestoMapper = totalImpuestoMapper;
-        this.pagoMapper = pagoMapper;
+    public InfoFacturaMapper() {
+        this.totalImpuestoMapper = new TotalImpuestoMapper();
+        this.pagoMapper = new PagoMapper();
     }
 
     @Override

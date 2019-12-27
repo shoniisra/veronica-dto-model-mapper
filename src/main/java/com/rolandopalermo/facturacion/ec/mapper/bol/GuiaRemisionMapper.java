@@ -1,14 +1,11 @@
 package com.rolandopalermo.facturacion.ec.mapper.bol;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.CampoAdicionalDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.InfoTributariaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.bol.DestinatarioDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.bol.GuiaRemisionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.bol.InfoGuiaRemisionDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.guia.Destinatario;
 import com.rolandopalermo.facturacion.ec.modelo.guia.GuiaRemision;
@@ -18,19 +15,12 @@ import java.util.Optional;
 
 public class GuiaRemisionMapper extends AbstractComprobanteMapper<GuiaRemisionDTO> implements Mapper<GuiaRemisionDTO, GuiaRemision> {
 
-    private Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper;
     private Mapper<DestinatarioDTO, Destinatario> destinatarioMapper;
     private Mapper<InfoGuiaRemisionDTO, InfoGuiaRemision> infoGuiaRemisionMapper;
-    private Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper;
 
-    public GuiaRemisionMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper,
-                              Mapper<DestinatarioDTO, Destinatario> destinatarioMapper,
-                              Mapper<InfoGuiaRemisionDTO, InfoGuiaRemision> infoGuiaRemisionMapper,
-                              Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
-        this.destinatarioMapper = destinatarioMapper;
-        this.infoGuiaRemisionMapper = infoGuiaRemisionMapper;
-        this.infoTributariaMapper = infoTributariaMapper;
+    public GuiaRemisionMapper() {
+        this.destinatarioMapper = new DestinatarioMapper();
+        this.infoGuiaRemisionMapper = new InfoGuiaRemisionMapper();
     }
 
     @Override
@@ -57,14 +47,6 @@ public class GuiaRemisionMapper extends AbstractComprobanteMapper<GuiaRemisionDT
         return Optional.ofNullable(comprobanteDTO).map(GuiaRemisionDTO::getInfoGuiaRemisionDTO).map(InfoGuiaRemisionDTO::getFechaIniTransporte).orElse(null);
     }
 
-    protected Mapper<CampoAdicionalDTO, CampoAdicional> getCampoAdicionalMapper() {
-        return campoAdicionalMapper;
-    }
-
-    public void setCampoAdicionalMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
-    }
-
     protected Mapper<DestinatarioDTO, Destinatario> getDestinatarioMapper() {
         return destinatarioMapper;
     }
@@ -79,14 +61,6 @@ public class GuiaRemisionMapper extends AbstractComprobanteMapper<GuiaRemisionDT
 
     public void setInfoGuiaRemisionMapper(Mapper<InfoGuiaRemisionDTO, InfoGuiaRemision> infoGuiaRemisionMapper) {
         this.infoGuiaRemisionMapper = infoGuiaRemisionMapper;
-    }
-
-    protected Mapper<InfoTributariaDTO, InfoTributaria> getInfoTributariaMapper() {
-        return infoTributariaMapper;
-    }
-
-    public void setInfoTributariaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
-        this.infoTributariaMapper = infoTributariaMapper;
     }
 
     @Override

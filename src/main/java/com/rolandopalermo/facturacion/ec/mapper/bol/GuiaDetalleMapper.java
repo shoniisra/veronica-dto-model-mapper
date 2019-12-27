@@ -2,6 +2,7 @@ package com.rolandopalermo.facturacion.ec.mapper.bol;
 
 import com.rolandopalermo.facturacion.ec.dto.v1.DetAdicionalDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.bol.GuiaDetallesDTO;
+import com.rolandopalermo.facturacion.ec.mapper.DetAdicionalMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.modelo.DetAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.guia.GuiaDetalles;
@@ -10,8 +11,8 @@ public class GuiaDetalleMapper implements Mapper<GuiaDetallesDTO, GuiaDetalles> 
 
     private Mapper<DetAdicionalDTO, DetAdicional> detAdicionalMapper;
 
-    public GuiaDetalleMapper(Mapper<DetAdicionalDTO, DetAdicional> detAdicionalMapper) {
-        this.detAdicionalMapper = detAdicionalMapper;
+    public GuiaDetalleMapper() {
+        this.detAdicionalMapper = new DetAdicionalMapper();
     }
 
     @Override

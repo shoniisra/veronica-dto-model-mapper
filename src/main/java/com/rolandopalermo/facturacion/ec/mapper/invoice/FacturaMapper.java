@@ -1,14 +1,11 @@
 package com.rolandopalermo.facturacion.ec.mapper.invoice;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.CampoAdicionalDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.InfoTributariaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoFacturaDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Factura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.FacturaDetalle;
@@ -18,20 +15,13 @@ import java.util.Optional;
 
 public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> implements Mapper<FacturaDTO, Factura> {
 
-    private Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper;
-    private Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper;
     private Mapper<InfoFacturaDTO, InfoFactura> infoFacturaMapper;
     private Mapper<FacturaDetalleDTO, FacturaDetalle> facturaDetalleMapper;
 
 
-    public FacturaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper,
-                         Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper,
-                         Mapper<InfoFacturaDTO, InfoFactura> infoFacturaMapper,
-                         Mapper<FacturaDetalleDTO, FacturaDetalle> facturaDetalleMapper) {
-        this.infoTributariaMapper = infoTributariaMapper;
-        this.campoAdicionalMapper = campoAdicionalMapper;
-        this.infoFacturaMapper = infoFacturaMapper;
-        this.facturaDetalleMapper = facturaDetalleMapper;
+    public FacturaMapper() {
+        this.infoFacturaMapper = new InfoFacturaMapper();
+        this.facturaDetalleMapper = new FacturaDetalleMapper();
     }
 
     @Override
@@ -59,22 +49,6 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
                 .map(FacturaDTO::getInfoFactura)
                 .map(InfoFacturaDTO::getFechaEmision)
                 .orElse(null);
-    }
-
-    protected Mapper<InfoTributariaDTO, InfoTributaria> getInfoTributariaMapper() {
-        return infoTributariaMapper;
-    }
-
-    public void setInfoTributariaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
-        this.infoTributariaMapper = infoTributariaMapper;
-    }
-
-    protected Mapper<CampoAdicionalDTO, CampoAdicional> getCampoAdicionalMapper() {
-        return campoAdicionalMapper;
-    }
-
-    public void setCampoAdicionalMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
     }
 
     protected Mapper<InfoFacturaDTO, InfoFactura> getInfoFacturaMapper() {

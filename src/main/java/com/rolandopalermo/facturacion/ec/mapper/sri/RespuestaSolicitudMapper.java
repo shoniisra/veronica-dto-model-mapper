@@ -15,8 +15,8 @@ public class RespuestaSolicitudMapper {
 
     private Mapper<Mensaje, MensajeDTO> mensajeRecepcionMapper;
 
-    public RespuestaSolicitudMapper(Mapper<Mensaje, MensajeDTO> mensajeRecepcionMapper) {
-        this.mensajeRecepcionMapper = mensajeRecepcionMapper;
+    public RespuestaSolicitudMapper() {
+        this.mensajeRecepcionMapper = new MensajeRecepcionMapper();
     }
 
     public RespuestaSolicitudDTO convert(RespuestaSolicitud respuestaSolicitud) {

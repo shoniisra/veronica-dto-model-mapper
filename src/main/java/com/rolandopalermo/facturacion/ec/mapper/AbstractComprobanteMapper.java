@@ -2,11 +2,22 @@ package com.rolandopalermo.facturacion.ec.mapper;
 
 import com.rolandopalermo.facturacion.ec.common.AccessKeyBuilder;
 import com.rolandopalermo.facturacion.ec.common.DateUtils;
+import com.rolandopalermo.facturacion.ec.dto.v1.CampoAdicionalDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.ComprobanteDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.InfoTributariaDTO;
+import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import org.apache.commons.lang.RandomStringUtils;
 
 public abstract class AbstractComprobanteMapper<DTO extends ComprobanteDTO> {
+
+    protected Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper;
+    protected Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper;
+
+    public AbstractComprobanteMapper() {
+        this.infoTributariaMapper = new InfoTributariaMapper();
+        this.campoAdicionalMapper = new CampoAdicionalMapper();
+    }
 
     protected InfoTributaria buildInfoTributaria(DTO dto) {
         InfoTributaria InfoTributaria = new InfoTributaria();
@@ -43,5 +54,21 @@ public abstract class AbstractComprobanteMapper<DTO extends ComprobanteDTO> {
     }
 
     protected abstract String getFechaEmision(final DTO comprobanteDTO);
+
+    public Mapper<InfoTributariaDTO, InfoTributaria> getInfoTributariaMapper() {
+        return infoTributariaMapper;
+    }
+
+    public void setInfoTributariaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
+        this.infoTributariaMapper = infoTributariaMapper;
+    }
+
+    public Mapper<CampoAdicionalDTO, CampoAdicional> getCampoAdicionalMapper() {
+        return campoAdicionalMapper;
+    }
+
+    public void setCampoAdicionalMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper) {
+        this.campoAdicionalMapper = campoAdicionalMapper;
+    }
 
 }

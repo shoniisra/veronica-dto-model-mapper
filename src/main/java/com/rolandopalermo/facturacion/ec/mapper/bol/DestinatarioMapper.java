@@ -10,8 +10,8 @@ public class DestinatarioMapper implements Mapper<DestinatarioDTO, Destinatario>
 
     private Mapper<GuiaDetallesDTO, GuiaDetalles> guiaDetalleMapper;
 
-    public DestinatarioMapper(Mapper<GuiaDetallesDTO, GuiaDetalles> guiaDetalleMapper) {
-        this.guiaDetalleMapper = guiaDetalleMapper;
+    public DestinatarioMapper() {
+        this.guiaDetalleMapper = new GuiaDetalleMapper();
     }
 
     @Override

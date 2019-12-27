@@ -1,14 +1,11 @@
 package com.rolandopalermo.facturacion.ec.mapper.cm;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.CampoAdicionalDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.InfoTributariaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.InfoNotaCreditoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.NotaCreditoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.NotaCreditoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.Detalle;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.InfoNotaCredito;
@@ -18,19 +15,12 @@ import java.util.Optional;
 
 public class NotaCreditoMapper extends AbstractComprobanteMapper<NotaCreditoDTO> implements Mapper<NotaCreditoDTO, NotaCredito> {
 
-    private Mapper<InfoTributariaDTO, InfoTributaria> InfoTributariaMapper;
-    private Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper;
     private Mapper<InfoNotaCreditoDTO, InfoNotaCredito> infoNotaCreditoMapper;
     private Mapper<NotaCreditoDetalleDTO, Detalle> notaCreditoDetalleMapper;
 
-    public NotaCreditoMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper,
-                             Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper,
-                             Mapper<InfoNotaCreditoDTO, InfoNotaCredito> infoNotaCreditoMapper,
-                             Mapper<NotaCreditoDetalleDTO, Detalle> notaCreditoDetalleMapper) {
-        InfoTributariaMapper = infoTributariaMapper;
-        this.campoAdicionalMapper = campoAdicionalMapper;
-        this.infoNotaCreditoMapper = infoNotaCreditoMapper;
-        this.notaCreditoDetalleMapper = notaCreditoDetalleMapper;
+    public NotaCreditoMapper() {
+        this.infoNotaCreditoMapper = new InfoNotaCreditoMapper();
+        this.notaCreditoDetalleMapper = new NotaCreditoDetalleMapper();
     }
 
     @Override
@@ -50,22 +40,6 @@ public class NotaCreditoMapper extends AbstractComprobanteMapper<NotaCreditoDTO>
         notaCredito.setInfoNotaCredito(getInfoNotaCreditoMapper().convert(notaCreditoDTO.getInfoNotaCredito()));
         notaCredito.setDetalle(getNotaCreditoDetalleMapper().convertAll(notaCreditoDTO.getDetalle()));
         return notaCredito;
-    }
-
-    protected Mapper<InfoTributariaDTO, InfoTributaria> getInfoTributariaMapper() {
-        return InfoTributariaMapper;
-    }
-
-    public void setInfoTributariaMapper(Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper) {
-        InfoTributariaMapper = infoTributariaMapper;
-    }
-
-    protected Mapper<CampoAdicionalDTO, CampoAdicional> getCampoAdicionalMapper() {
-        return campoAdicionalMapper;
-    }
-
-    public void setCampoAdicionalMapper(Mapper<CampoAdicionalDTO, CampoAdicional> campoAdicionalMapper) {
-        this.campoAdicionalMapper = campoAdicionalMapper;
     }
 
     @Override
