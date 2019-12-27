@@ -4,7 +4,7 @@
 
     <groupId>com.rolandopalermo.facturacion.ec</groupId>
     <artifactId>veronica-dto-model-mapper</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>Veronica DTO to Model mapper</name>
     <description>Generate model objects from Veronica DTOs for Ecuadorian electronic invoicing applications
@@ -15,7 +15,7 @@
         <url>https://github.com/rolandopalermo/veronica-dto-model-mapper.git</url>
         <connection>scm:git:git://github.com/rolandopalermo/veronica-dto-model-mapper.git</connection>
         <developerConnection>scm:git:git@github.com:rolandopalermo/veronica-dto-model-mapper.git</developerConnection>
-        <tag>veronica-dto-model-mapper-1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
