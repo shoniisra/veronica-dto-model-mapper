@@ -39,7 +39,9 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
         }
         factura.getCampoAdicional().addAll(getCampoAdicionalMapper().convertAll(facturaDTO.getCampoAdicional()));
         factura.setInfoFactura(getInfoFacturaMapper().convert(facturaDTO.getInfoFactura()));
-        factura.getDetalle().addAll(getFacturaDetalleMapper().convertAll(facturaDTO.getDetalle()));
+        if (facturaDTO.getDetalle() != null && !facturaDTO.getDetalle().isEmpty()) {
+            factura.getDetalle().addAll(getFacturaDetalleMapper().convertAll(facturaDTO.getDetalle()));
+        }
         return factura;
     }
 

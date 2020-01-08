@@ -38,7 +38,9 @@ public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> imp
             infoTributaria.setClaveAcceso(getClaveAcceso(infoTributaria, getFechaEmision(retencionDTO)));
             comprobanteRetencion.setInfoTributaria(infoTributaria);
         }
-        comprobanteRetencion.getImpuesto().addAll(getImpuestoMapper().convertAll(retencionDTO.getImpuesto()));
+        if (retencionDTO.getImpuesto() != null && !retencionDTO.getImpuesto().isEmpty()) {
+            comprobanteRetencion.getImpuesto().addAll(getImpuestoMapper().convertAll(retencionDTO.getImpuesto()));
+        }
         return comprobanteRetencion;
     }
 

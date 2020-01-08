@@ -25,7 +25,9 @@ public class GuiaDetalleMapper implements Mapper<GuiaDetallesDTO, GuiaDetalles> 
         detalle.setCodigoAdicional(guiaDetallesDTO.getCodigoAdicional());
         detalle.setDescripcion(guiaDetallesDTO.getDescripcion());
         detalle.setCantidad(guiaDetallesDTO.getCantidad());
-        detalle.getDetAdicional().addAll(getDetAdicionalMapper().convertAll(guiaDetallesDTO.getDetAdicional()));
+        if (guiaDetallesDTO.getDetAdicional() != null && !guiaDetallesDTO.getDetAdicional().isEmpty()) {
+            detalle.getDetAdicional().addAll(getDetAdicionalMapper().convertAll(guiaDetallesDTO.getDetAdicional()));
+        }
         return detalle;
     }
 

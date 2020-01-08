@@ -32,7 +32,11 @@ public class GuiaRemisionMapper extends AbstractComprobanteMapper<GuiaRemisionDT
         guiaRemision.setId(guiaRemisionDTO.getId());
         guiaRemision.setVersion(guiaRemisionDTO.getVersion());
         guiaRemision.getCampoAdicional().addAll(getCampoAdicionalMapper().convertAll(guiaRemisionDTO.getCampoAdicional()));
-        guiaRemision.getDestinatario().addAll(getDestinatarioMapper().convertAll(guiaRemisionDTO.getDestinatario()));
+
+        if (guiaRemisionDTO.getDestinatario() != null && !guiaRemisionDTO.getDestinatario().isEmpty()) {
+            guiaRemision.getDestinatario().addAll(getDestinatarioMapper().convertAll(guiaRemisionDTO.getDestinatario()));
+        }
+
         guiaRemision.setInfoGuiaRemision(getInfoGuiaRemisionMapper().convert(guiaRemisionDTO.getInfoGuiaRemisionDTO()));
         final InfoTributaria infoTributaria = getInfoTributariaMapper().convert(guiaRemisionDTO.getInfoTributaria());
         if (infoTributaria != null) {
