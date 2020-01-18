@@ -33,7 +33,7 @@ public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNot
         infoNotaCredito.setFechaEmisionDocSustento(infoNotaCreditoDTO.getFechaEmisionDocSustento());
         infoNotaCredito.setValorModificacion(infoNotaCreditoDTO.getValorModificacion());
         infoNotaCredito.setMotivo(infoNotaCreditoDTO.getMotivo());
-        infoNotaCredito.getTotalImpuesto().addAll(getTotalImpuestoMapper().convertAll(infoNotaCreditoDTO.getTotalImpuesto()));
+        infoNotaCredito.setTotalImpuesto(getTotalImpuestoMapper().convertAll(infoNotaCreditoDTO.getTotalImpuesto()));
         return infoNotaCredito;
     }
 

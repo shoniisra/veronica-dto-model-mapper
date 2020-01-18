@@ -36,7 +36,9 @@ public class NotaCreditoMapper extends AbstractComprobanteMapper<NotaCreditoDTO>
             infoTributaria.setClaveAcceso(getClaveAcceso(infoTributaria, getFechaEmision(notaCreditoDTO)));
             notaCredito.setInfoTributaria(infoTributaria);
         }
-        notaCredito.getCampoAdicional().addAll(getCampoAdicionalMapper().convertAll(notaCreditoDTO.getCampoAdicional()));
+        if (notaCreditoDTO.getCampoAdicional() != null && !notaCreditoDTO.getCampoAdicional().isEmpty()) {
+            notaCredito.setCampoAdicional(getCampoAdicionalMapper().convertAll(notaCreditoDTO.getCampoAdicional()));
+        }
         notaCredito.setInfoNotaCredito(getInfoNotaCreditoMapper().convert(notaCreditoDTO.getInfoNotaCredito()));
         notaCredito.setDetalle(getNotaCreditoDetalleMapper().convertAll(notaCreditoDTO.getDetalle()));
         return notaCredito;

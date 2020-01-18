@@ -36,9 +36,14 @@ public class NotaDebitoMapper extends AbstractComprobanteMapper<NotaDebitoDTO> i
             infoTributaria.setClaveAcceso(getClaveAcceso(infoTributaria, getFechaEmision(notaDebitoDTO)));
             notaDebito.setInfoTributaria(infoTributaria);
         }
-        notaDebito.getCampoAdicional().addAll(getCampoAdicionalMapper().convertAll(notaDebitoDTO.getCampoAdicional()));
+        if (notaDebitoDTO.getCampoAdicional() != null && !notaDebitoDTO.getCampoAdicional().isEmpty()) {
+            notaDebito.setCampoAdicional(getCampoAdicionalMapper().convertAll(notaDebitoDTO.getCampoAdicional()));
+        }
         notaDebito.setInfoNotaDebito(getInfoNotaDebitoMapper().convert(notaDebitoDTO.getInfoNotaDebito()));
-        notaDebito.getMotivo().addAll(getMotivoMapper().convertAll(notaDebitoDTO.getMotivo()));
+        if (notaDebitoDTO.getMotivo() != null && !notaDebitoDTO.getMotivo().isEmpty()) {
+            notaDebito.setMotivo(getMotivoMapper().convertAll(notaDebitoDTO.getMotivo()));
+        }
+
         return notaDebito;
     }
 

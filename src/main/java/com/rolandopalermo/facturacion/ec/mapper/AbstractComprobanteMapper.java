@@ -9,6 +9,9 @@ import com.rolandopalermo.facturacion.ec.modelo.CampoAdicional;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import org.apache.commons.lang.RandomStringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class AbstractComprobanteMapper<DTO extends ComprobanteDTO> {
 
     protected Mapper<InfoTributariaDTO, InfoTributaria> infoTributariaMapper;

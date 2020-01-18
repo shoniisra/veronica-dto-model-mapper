@@ -30,7 +30,7 @@ public class InfoNotaDebitoMapper implements Mapper<InfoNotaDebitoDTO, InfoNotaD
         infoNotaDebito.setNumDocModificado(infoNotaDebitoDTO.getNumDocModificado());
         infoNotaDebito.setFechaEmisionDocSustento(infoNotaDebitoDTO.getFechaEmisionDocSustento());
         if (infoNotaDebitoDTO.getImpuesto() != null && !infoNotaDebitoDTO.getImpuesto().isEmpty()) {
-            infoNotaDebito.getImpuesto().addAll(getTotalImpuestoMapper().convertAll(infoNotaDebitoDTO.getImpuesto()));
+            infoNotaDebito.setImpuesto(getTotalImpuestoMapper().convertAll(infoNotaDebitoDTO.getImpuesto()));
         }
         infoNotaDebito.setValorTotal(infoNotaDebitoDTO.getValorTotal());
         return infoNotaDebito;

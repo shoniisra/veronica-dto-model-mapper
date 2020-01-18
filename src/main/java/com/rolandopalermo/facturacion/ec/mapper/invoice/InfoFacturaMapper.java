@@ -35,10 +35,10 @@ public class InfoFacturaMapper implements Mapper<InfoFacturaDTO, InfoFactura> {
         infoFactura.setTotalSinImpuestos(infoFacturaDTO.getTotalSinImpuestos());
         infoFactura.setTotalDescuento(infoFacturaDTO.getTotalDescuento());
         if (infoFacturaDTO.getTotalImpuesto() != null && !infoFacturaDTO.getTotalImpuesto().isEmpty()) {
-            infoFactura.getTotalImpuesto().addAll(getTotalImpuestoMapper().convertAll(infoFacturaDTO.getTotalImpuesto()));
+            infoFactura.setTotalImpuesto(getTotalImpuestoMapper().convertAll(infoFacturaDTO.getTotalImpuesto()));
         }
         if (infoFacturaDTO.getPagos() != null && !infoFacturaDTO.getPagos().isEmpty()) {
-            infoFactura.getPago().addAll(getPagoMapper().convertAll(infoFacturaDTO.getPagos()));
+            infoFactura.setPago(getPagoMapper().convertAll(infoFacturaDTO.getPagos()));
         }
         infoFactura.setPropina(infoFacturaDTO.getPropina());
         infoFactura.setImporteTotal(infoFacturaDTO.getImporteTotal());

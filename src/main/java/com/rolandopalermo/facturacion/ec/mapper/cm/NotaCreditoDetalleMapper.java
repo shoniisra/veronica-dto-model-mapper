@@ -33,8 +33,8 @@ public class NotaCreditoDetalleMapper implements Mapper<NotaCreditoDetalleDTO, D
         detalle.setPrecioUnitario(notaCreditoDetalleDTO.getPrecioUnitario());
         detalle.setDescuento(notaCreditoDetalleDTO.getDescuento());
         detalle.setPrecioTotalSinImpuesto(notaCreditoDetalleDTO.getPrecioTotalSinImpuesto());
-        detalle.getDetAdicional().addAll(getDetAdicionalMapper().convertAll(notaCreditoDetalleDTO.getDetAdicional()));
-        detalle.getImpuesto().addAll(getImpuestoMapper().convertAll(notaCreditoDetalleDTO.getImpuesto()));
+        detalle.setDetAdicional(getDetAdicionalMapper().convertAll(notaCreditoDetalleDTO.getDetAdicional()));
+        detalle.setImpuesto(getImpuestoMapper().convertAll(notaCreditoDetalleDTO.getImpuesto()));
         return detalle;
     }
 

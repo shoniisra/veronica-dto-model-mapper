@@ -29,7 +29,9 @@ public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> imp
             return null;
         }
         ComprobanteRetencion comprobanteRetencion = new ComprobanteRetencion();
-        comprobanteRetencion.getCampoAdicional().addAll(getCampoAdicionalMapper().convertAll(retencionDTO.getCampoAdicional()));
+        if (retencionDTO.getCampoAdicional() != null && !retencionDTO.getCampoAdicional().isEmpty()) {
+            comprobanteRetencion.setCampoAdicional(getCampoAdicionalMapper().convertAll(retencionDTO.getCampoAdicional()));
+        }
         comprobanteRetencion.setId(retencionDTO.getId());
         comprobanteRetencion.setVersion(retencionDTO.getVersion());
         comprobanteRetencion.setInfoCompRetencion(getInfoCompRetencionMapper().convert(retencionDTO.getInfoRetencion()));
@@ -39,7 +41,7 @@ public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> imp
             comprobanteRetencion.setInfoTributaria(infoTributaria);
         }
         if (retencionDTO.getImpuesto() != null && !retencionDTO.getImpuesto().isEmpty()) {
-            comprobanteRetencion.getImpuesto().addAll(getImpuestoMapper().convertAll(retencionDTO.getImpuesto()));
+            comprobanteRetencion.setImpuesto(getImpuestoMapper().convertAll(retencionDTO.getImpuesto()));
         }
         return comprobanteRetencion;
     }

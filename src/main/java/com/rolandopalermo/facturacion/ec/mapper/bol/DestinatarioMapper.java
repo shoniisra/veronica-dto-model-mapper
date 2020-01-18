@@ -32,7 +32,7 @@ public class DestinatarioMapper implements Mapper<DestinatarioDTO, Destinatario>
         des.setNumAutDocSustento(destinatarioDTO.getNumAutDocSustento());
         des.setFechaEmisionDocSustento(destinatarioDTO.getFechaEmisionDocSustento());
         if (destinatarioDTO.getDetalle() != null && !destinatarioDTO.getDetalle().isEmpty()) {
-            des.getDetalle().addAll(getGuiaDetalleMapper().convertAll(destinatarioDTO.getDetalle()));
+            des.setDetalle(getGuiaDetalleMapper().convertAll(destinatarioDTO.getDetalle()));
         }
         return des;
     }
