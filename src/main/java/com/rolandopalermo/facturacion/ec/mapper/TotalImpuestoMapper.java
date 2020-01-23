@@ -13,8 +13,11 @@ public class TotalImpuestoMapper implements Mapper<TotalImpuestoDTO, TotalImpues
         final TotalImpuesto totalImpuesto = new TotalImpuesto();
         totalImpuesto.setCodigo(totalImpuestoDTO.getCodigo());
         totalImpuesto.setCodigoPorcentaje(totalImpuestoDTO.getCodigoPorcentaje());
+        totalImpuesto.setDescuentoAdicional(totalImpuestoDTO.getDescuentoAdicional());
         totalImpuesto.setBaseImponible(totalImpuestoDTO.getBaseImponible());
+        totalImpuesto.setTarifa(totalImpuestoDTO.getTarifa());
         totalImpuesto.setValor(totalImpuestoDTO.getValor());
+        totalImpuesto.setValorDevolucionIva(totalImpuestoDTO.getValorDevolucionIva());
         return totalImpuesto;
     }
 
