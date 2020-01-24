@@ -33,6 +33,7 @@ public class FacturaDetalleMapper implements Mapper<FacturaDetalleDTO, FacturaDe
         facturaDetalle.setUnidadMedida(facturaDetalleDTO.getUnidadMedida());
         facturaDetalle.setCantidad(facturaDetalleDTO.getCantidad());
         facturaDetalle.setPrecioUnitario(facturaDetalleDTO.getPrecioUnitario());
+        facturaDetalle.setPrecioSinSubsidio(facturaDetalleDTO.getPrecioSinSubsidio());
         facturaDetalle.setDescuento(facturaDetalleDTO.getDescuento());
         facturaDetalle.setPrecioTotalSinImpuesto(facturaDetalleDTO.getPrecioTotalSinImpuesto());
         if (facturaDetalleDTO.getDetAdicional() != null && !facturaDetalleDTO.getDetAdicional().isEmpty()) {
