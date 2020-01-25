@@ -4,8 +4,8 @@ import com.rolandopalermo.facturacion.ec.dto.v1.TotalImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.InfoNotaCreditoDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoNotaCreditoMapper;
+import com.rolandopalermo.facturacion.ec.modelo.TotalImpuesto;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.InfoNotaCredito;
-import com.rolandopalermo.facturacion.ec.modelo.notacredito.TotalImpuesto;
 
 public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNotaCredito> {
 

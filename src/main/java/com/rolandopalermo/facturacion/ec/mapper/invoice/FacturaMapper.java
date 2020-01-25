@@ -5,16 +5,21 @@ import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaRetencionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoFacturaDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoSustitutivaGuiaRemisionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.ReembolsoDetalleDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.invoice.RubroDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.TipoNegociableDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
+import com.rolandopalermo.facturacion.ec.mapper.ReembolsoDetalleMapper;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
+import com.rolandopalermo.facturacion.ec.modelo.ReembolsoDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Factura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.FacturaDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoFactura;
-import com.rolandopalermo.facturacion.ec.modelo.factura.ReembolsoDetalle;
+import com.rolandopalermo.facturacion.ec.modelo.factura.InfoSustitutivaGuiaRemision;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Retencion;
+import com.rolandopalermo.facturacion.ec.modelo.factura.Rubro;
 import com.rolandopalermo.facturacion.ec.modelo.factura.TipoNegociable;
 
 import java.util.Optional;
@@ -26,6 +31,8 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
     private Mapper<FacturaRetencionDTO, Retencion> facturaRetencionMapper;
     private Mapper<TipoNegociableDTO, TipoNegociable> tipoNegociableMapper;
     private Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper;
+    private Mapper<InfoSustitutivaGuiaRemisionDTO, InfoSustitutivaGuiaRemision> infoSustitutivaGuiaRemisionMapper;
+    private Mapper<RubroDTO, Rubro> rubroMapper;
 
     public FacturaMapper() {
         this.infoFacturaMapper = new InfoFacturaMapper();
@@ -33,6 +40,8 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
         this.facturaRetencionMapper = new RetencionMapper();
         this.tipoNegociableMapper = new TipoNegociableMapper();
         this.reembolsoDetalleMapper = new ReembolsoDetalleMapper();
+        this.infoSustitutivaGuiaRemisionMapper = new InfoSustitutivaGuiaRemisionMapper();
+        this.rubroMapper = new RubroMapper();
     }
 
     @Override
@@ -63,6 +72,12 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
         }
         if (facturaDTO.getReembolsoDetalle() != null) {
             factura.setReembolsoDetalle(getReembolsoDetalleMapper().convertAll(facturaDTO.getReembolsoDetalle()));
+        }
+        if (facturaDTO.getInfoSustitutivaGuiaRemision() != null) {
+            factura.setInfoSustitutivaGuiaRemision(getInfoSustitutivaGuiaRemisionMapper().convert(facturaDTO.getInfoSustitutivaGuiaRemision()));
+        }
+        if (facturaDTO.getRubro() != null && !facturaDTO.getRubro().isEmpty()) {
+            factura.setRubro(getRubroMapper().convertAll(facturaDTO.getRubro()));
         }
         return factura;
     }
@@ -118,6 +133,22 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
 
     public void setReembolsoDetalleMapper(Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper) {
         this.reembolsoDetalleMapper = reembolsoDetalleMapper;
+    }
+
+    public Mapper<InfoSustitutivaGuiaRemisionDTO, InfoSustitutivaGuiaRemision> getInfoSustitutivaGuiaRemisionMapper() {
+        return infoSustitutivaGuiaRemisionMapper;
+    }
+
+    public void setInfoSustitutivaGuiaRemisionMapper(Mapper<InfoSustitutivaGuiaRemisionDTO, InfoSustitutivaGuiaRemision> infoSustitutivaGuiaRemisionMapper) {
+        this.infoSustitutivaGuiaRemisionMapper = infoSustitutivaGuiaRemisionMapper;
+    }
+
+    public Mapper<RubroDTO, Rubro> getRubroMapper() {
+        return rubroMapper;
+    }
+
+    public void setRubroMapper(Mapper<RubroDTO, Rubro> rubroMapper) {
+        this.rubroMapper = rubroMapper;
     }
 
 }

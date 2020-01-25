@@ -1,12 +1,14 @@
-package com.rolandopalermo.facturacion.ec.mapper.invoice;
+package com.rolandopalermo.facturacion.ec.mapper;
 
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.CompensacionReembolsoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.DetalleImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.ReembolsoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
+import com.rolandopalermo.facturacion.ec.mapper.invoice.CompensacionReembolsoMapper;
+import com.rolandopalermo.facturacion.ec.mapper.invoice.DetalleImpuestoMapper;
+import com.rolandopalermo.facturacion.ec.modelo.DetalleImpuesto;
+import com.rolandopalermo.facturacion.ec.modelo.ReembolsoDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.CompensacionReembolso;
-import com.rolandopalermo.facturacion.ec.modelo.factura.DetalleImpuesto;
-import com.rolandopalermo.facturacion.ec.modelo.factura.ReembolsoDetalle;
 
 public class ReembolsoDetalleMapper implements Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> {
 

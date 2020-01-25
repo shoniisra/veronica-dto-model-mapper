@@ -2,7 +2,7 @@ package com.rolandopalermo.facturacion.ec.mapper.invoice;
 
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.DetalleImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.factura.DetalleImpuesto;
+import com.rolandopalermo.facturacion.ec.modelo.DetalleImpuesto;
 
 public class DetalleImpuestoMapper implements Mapper<DetalleImpuestoDTO, DetalleImpuesto> {
 

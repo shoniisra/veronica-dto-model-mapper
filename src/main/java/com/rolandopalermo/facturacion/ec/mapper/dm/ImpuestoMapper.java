@@ -2,7 +2,7 @@ package com.rolandopalermo.facturacion.ec.mapper.dm;
 
 import com.rolandopalermo.facturacion.ec.dto.v1.ImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.notadebito.Impuesto;
+import com.rolandopalermo.facturacion.ec.modelo.Impuesto;
 
 public class ImpuestoMapper implements Mapper<ImpuestoDTO, Impuesto> {
 

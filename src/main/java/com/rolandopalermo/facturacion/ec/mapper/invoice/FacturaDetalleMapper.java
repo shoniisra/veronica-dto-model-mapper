@@ -15,7 +15,6 @@ public class FacturaDetalleMapper implements Mapper<FacturaDetalleDTO, FacturaDe
     private Mapper<DetAdicionalDTO, DetAdicional> detAdicionalMapper;
     private Mapper<ImpuestoDTO, Impuesto> impuestoMapper;
 
-
     public FacturaDetalleMapper() {
         this.detAdicionalMapper = new DetAdicionalMapper();
         this.impuestoMapper = new ImpuestoMapper();

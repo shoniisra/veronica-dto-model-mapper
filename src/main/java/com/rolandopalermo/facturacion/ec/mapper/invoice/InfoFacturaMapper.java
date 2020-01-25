@@ -8,9 +8,9 @@ import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.mapper.PagoMapper;
 import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoMapper;
 import com.rolandopalermo.facturacion.ec.modelo.Pago;
+import com.rolandopalermo.facturacion.ec.modelo.TotalImpuesto;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Compensacion;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoFactura;
-import com.rolandopalermo.facturacion.ec.modelo.factura.TotalImpuesto;
 
 public class InfoFacturaMapper implements Mapper<InfoFacturaDTO, InfoFactura> {
 
@@ -71,6 +71,7 @@ public class InfoFacturaMapper implements Mapper<InfoFacturaDTO, InfoFactura> {
         infoFactura.setPropina(infoFacturaDTO.getPropina());
         infoFactura.setImporteTotal(infoFacturaDTO.getImporteTotal());
         infoFactura.setMoneda(infoFacturaDTO.getMoneda());
+        infoFactura.setPlaca(infoFacturaDTO.getPlaca());
         infoFactura.setValorRetIva(infoFacturaDTO.getValorRetIva());
         infoFactura.setValorRetRenta(infoFacturaDTO.getValorRetRenta());
         return infoFactura;
