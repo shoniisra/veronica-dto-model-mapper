@@ -1,23 +1,24 @@
 package com.rolandopalermo.facturacion.ec.mapper.invoice;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
+import com.rolandopalermo.facturacion.ec.dto.v1.ReembolsoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.FacturaRetencionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoFacturaDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoSustitutivaGuiaRemisionDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.invoice.ReembolsoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.RubroDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.TipoNegociableDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.mapper.ReembolsoDetalleMapper;
+import com.rolandopalermo.facturacion.ec.mapper.ReembolsoDetalleFacturaMapper;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.ReembolsoDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Factura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.FacturaDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoFactura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoSustitutivaGuiaRemision;
+import com.rolandopalermo.facturacion.ec.modelo.factura.ReembolsoDetalleFactura;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Retencion;
 import com.rolandopalermo.facturacion.ec.modelo.factura.Rubro;
 import com.rolandopalermo.facturacion.ec.modelo.factura.TipoNegociable;
@@ -30,7 +31,7 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
     private Mapper<FacturaDetalleDTO, FacturaDetalle> facturaDetalleMapper;
     private Mapper<FacturaRetencionDTO, Retencion> facturaRetencionMapper;
     private Mapper<TipoNegociableDTO, TipoNegociable> tipoNegociableMapper;
-    private Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper;
+    private Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> reembolsoDetalleMapper;
     private Mapper<InfoSustitutivaGuiaRemisionDTO, InfoSustitutivaGuiaRemision> infoSustitutivaGuiaRemisionMapper;
     private Mapper<RubroDTO, Rubro> rubroMapper;
 
@@ -39,7 +40,7 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
         this.facturaDetalleMapper = new FacturaDetalleMapper();
         this.facturaRetencionMapper = new RetencionMapper();
         this.tipoNegociableMapper = new TipoNegociableMapper();
-        this.reembolsoDetalleMapper = new ReembolsoDetalleMapper();
+        this.reembolsoDetalleMapper = new ReembolsoDetalleFacturaMapper();
         this.infoSustitutivaGuiaRemisionMapper = new InfoSustitutivaGuiaRemisionMapper();
         this.rubroMapper = new RubroMapper();
     }
@@ -127,11 +128,11 @@ public class FacturaMapper extends AbstractComprobanteMapper<FacturaDTO> impleme
         this.tipoNegociableMapper = tipoNegociableMapper;
     }
 
-    public Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> getReembolsoDetalleMapper() {
+    public Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> getReembolsoDetalleMapper() {
         return reembolsoDetalleMapper;
     }
 
-    public void setReembolsoDetalleMapper(Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper) {
+    public void setReembolsoDetalleMapper(Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> reembolsoDetalleMapper) {
         this.reembolsoDetalleMapper = reembolsoDetalleMapper;
     }
 

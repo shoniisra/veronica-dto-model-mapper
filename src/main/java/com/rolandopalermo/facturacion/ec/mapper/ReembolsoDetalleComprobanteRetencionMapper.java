@@ -1,31 +1,30 @@
 package com.rolandopalermo.facturacion.ec.mapper;
 
+import com.rolandopalermo.facturacion.ec.dto.v1.ReembolsoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.CompensacionReembolsoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.DetalleImpuestoDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.invoice.ReembolsoDetalleDTO;
-import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.mapper.invoice.CompensacionReembolsoMapper;
 import com.rolandopalermo.facturacion.ec.mapper.invoice.DetalleImpuestoMapper;
 import com.rolandopalermo.facturacion.ec.modelo.DetalleImpuesto;
-import com.rolandopalermo.facturacion.ec.modelo.ReembolsoDetalle;
 import com.rolandopalermo.facturacion.ec.modelo.factura.CompensacionReembolso;
+import com.rolandopalermo.facturacion.ec.modelo.retencion.ReembolsoDetalleComprobanteRetencion;
 
-public class ReembolsoDetalleMapper implements Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> {
+public class ReembolsoDetalleComprobanteRetencionMapper implements Mapper<ReembolsoDetalleDTO, ReembolsoDetalleComprobanteRetencion> {
 
     private Mapper<DetalleImpuestoDTO, DetalleImpuesto> detalleImpuestoMapper;
     private Mapper<CompensacionReembolsoDTO, CompensacionReembolso> compensacionReembolsoMapper;
 
-    public ReembolsoDetalleMapper() {
+    public ReembolsoDetalleComprobanteRetencionMapper() {
         this.detalleImpuestoMapper = new DetalleImpuestoMapper();
         this.compensacionReembolsoMapper = new CompensacionReembolsoMapper();
     }
 
     @Override
-    public ReembolsoDetalle convert(ReembolsoDetalleDTO reembolsoDetalleDTO) {
+    public ReembolsoDetalleComprobanteRetencion convert(ReembolsoDetalleDTO reembolsoDetalleDTO) {
         if (reembolsoDetalleDTO == null) {
             return null;
         }
-        ReembolsoDetalle reembolsoDetalle = new ReembolsoDetalle();
+        ReembolsoDetalleComprobanteRetencion reembolsoDetalle = new ReembolsoDetalleComprobanteRetencion();
         reembolsoDetalle.setTipoIdentificacionProveedorReembolso(reembolsoDetalleDTO.getTipoIdentificacionProveedorReembolso());
         reembolsoDetalle.setIdentificacionProveedorReembolso(reembolsoDetalleDTO.getIdentificacionProveedorReembolso());
         reembolsoDetalle.setCodPaisPagoProveedorReembolso(reembolsoDetalleDTO.getCodPaisPagoProveedorReembolso());
@@ -35,7 +34,7 @@ public class ReembolsoDetalleMapper implements Mapper<ReembolsoDetalleDTO, Reemb
         reembolsoDetalle.setPtoEmiDocReembolso(reembolsoDetalleDTO.getPtoEmiDocReembolso());
         reembolsoDetalle.setSecuencialDocReembolso(reembolsoDetalleDTO.getSecuencialDocReembolso());
         reembolsoDetalle.setFechaEmisionDocReembolso(reembolsoDetalleDTO.getFechaEmisionDocReembolso());
-        reembolsoDetalle.setNumeroautorizacionDocReemb(reembolsoDetalleDTO.getNumeroautorizacionDocReemb());
+        reembolsoDetalle.setNumeroAutorizacionDocReemb(reembolsoDetalleDTO.getNumeroAutorizacionDocReemb());
         if (reembolsoDetalleDTO.getDetalleImpuesto() != null) {
             reembolsoDetalle.setDetalleImpuesto(getDetalleImpuestoMapper().convertAll(reembolsoDetalleDTO.getDetalleImpuesto()));
         }

@@ -1,75 +1,57 @@
 package com.rolandopalermo.facturacion.ec.mapper.withholding;
 
-import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.ImpuestoDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.withholding.InfoRetencionDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.withholding.CompraCajBananoDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.withholding.DividendosDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.RetencionDTO;
-import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
-import com.rolandopalermo.facturacion.ec.modelo.retencion.ComprobanteRetencion;
-import com.rolandopalermo.facturacion.ec.modelo.retencion.Impuesto;
-import com.rolandopalermo.facturacion.ec.modelo.retencion.InfoCompRetencion;
+import com.rolandopalermo.facturacion.ec.modelo.retencion.CompraCajBanano;
+import com.rolandopalermo.facturacion.ec.modelo.retencion.Dividendos;
+import com.rolandopalermo.facturacion.ec.modelo.retencion.Retencion;
 
-import java.util.Optional;
+public class RetencionMapper implements Mapper<RetencionDTO, Retencion> {
 
-public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> implements Mapper<RetencionDTO, ComprobanteRetencion> {
-
-    private Mapper<InfoRetencionDTO, InfoCompRetencion> infoCompRetencionMapper;
-    private Mapper<ImpuestoDTO, Impuesto> impuestoMapper;
+    private Mapper<DividendosDTO, Dividendos> dividendosMapper;
+    private Mapper<CompraCajBananoDTO, CompraCajBanano> compraCajBananoMapper;
 
     public RetencionMapper() {
-        this.infoCompRetencionMapper = new InfoCompRetencionMapper();
-        this.impuestoMapper = new ImpuestoMapper();
+        this.dividendosMapper = new DividendosMapper();
+        this.compraCajBananoMapper = new CompraCajBananoMapper();
     }
 
     @Override
-    public ComprobanteRetencion convert(final RetencionDTO retencionDTO) {
+    public Retencion convert(RetencionDTO retencionDTO) {
         if (retencionDTO == null) {
             return null;
         }
-        ComprobanteRetencion comprobanteRetencion = new ComprobanteRetencion();
-        if (retencionDTO.getCampoAdicional() != null && !retencionDTO.getCampoAdicional().isEmpty()) {
-            comprobanteRetencion.setCampoAdicional(getCampoAdicionalMapper().convertAll(retencionDTO.getCampoAdicional()));
+        Retencion retencion = new Retencion();
+        retencion.setCodigo(retencionDTO.getCodigo());
+        retencion.setCodigoRetencion(retencionDTO.getCodigoRetencion());
+        retencion.setBaseImponible(retencionDTO.getBaseImponible());
+        retencion.setPorcentajeRetener(retencionDTO.getPorcentajeRetener());
+        retencion.setValorRetenido(retencionDTO.getValorRetenido());
+        if (retencionDTO.getDividendos() != null) {
+            retencion.setDividendos(getDividendosMapper().convert(retencionDTO.getDividendos()));
         }
-        comprobanteRetencion.setId(retencionDTO.getId());
-        comprobanteRetencion.setVersion(retencionDTO.getVersion());
-        comprobanteRetencion.setInfoCompRetencion(getInfoCompRetencionMapper().convert(retencionDTO.getInfoRetencion()));
-        final InfoTributaria infoTributaria = getInfoTributariaMapper().convert(retencionDTO.getInfoTributaria());
-        if (infoTributaria != null) {
-            infoTributaria.setClaveAcceso(getClaveAcceso(infoTributaria, getFechaEmision(retencionDTO)));
-            comprobanteRetencion.setInfoTributaria(infoTributaria);
+        if (retencionDTO.getCompraCajBanano() != null) {
+            retencion.setCompraCajBanano(getCompraCajBananoMapper().convert(retencionDTO.getCompraCajBanano()));
         }
-        if (retencionDTO.getImpuesto() != null && !retencionDTO.getImpuesto().isEmpty()) {
-            comprobanteRetencion.setImpuesto(getImpuestoMapper().convertAll(retencionDTO.getImpuesto()));
-        }
-        return comprobanteRetencion;
+        return retencion;
     }
 
-    @Override
-    protected String getFechaEmision(final RetencionDTO comprobanteDTO) {
-        return Optional.ofNullable(comprobanteDTO).map(RetencionDTO::getInfoRetencion).map(InfoRetencionDTO::getFechaEmision).orElse(null);
+    public Mapper<DividendosDTO, Dividendos> getDividendosMapper() {
+        return dividendosMapper;
     }
 
-    public Mapper<ImpuestoDTO, Impuesto> getImpuestoMapper() {
-        return impuestoMapper;
+    public void setDividendosMapper(Mapper<DividendosDTO, Dividendos> dividendosMapper) {
+        this.dividendosMapper = dividendosMapper;
     }
 
-    public void setImpuestoMapper(Mapper<ImpuestoDTO, Impuesto> impuestoMapper) {
-        this.impuestoMapper = impuestoMapper;
+    public Mapper<CompraCajBananoDTO, CompraCajBanano> getCompraCajBananoMapper() {
+        return compraCajBananoMapper;
     }
 
-    protected Mapper<InfoRetencionDTO, InfoCompRetencion> getInfoCompRetencionMapper() {
-        return infoCompRetencionMapper;
-    }
-
-    public void setInfoCompRetencionMapper(Mapper<InfoRetencionDTO, InfoCompRetencion> infoCompRetencionMapper) {
-        this.infoCompRetencionMapper = infoCompRetencionMapper;
-    }
-
-    @Override
-    public boolean supports(DocumentEnum tipoDocumento) {
-        return tipoDocumento.equals(DocumentEnum.COMPROBANTE_RETENCION);
+    public void setCompraCajBananoMapper(Mapper<CompraCajBananoDTO, CompraCajBanano> compraCajBananoMapper) {
+        this.compraCajBananoMapper = compraCajBananoMapper;
     }
 
 }

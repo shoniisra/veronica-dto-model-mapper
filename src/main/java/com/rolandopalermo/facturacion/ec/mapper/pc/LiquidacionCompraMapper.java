@@ -1,16 +1,17 @@
 package com.rolandopalermo.facturacion.ec.mapper.pc;
 
 import com.rolandopalermo.facturacion.ec.common.types.DocumentEnum;
-import com.rolandopalermo.facturacion.ec.dto.v1.invoice.ReembolsoDetalleDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.ReembolsoDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.pc.InfoLiquidacionCompraDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.pc.LiquidacionCompraDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.pc.LiquidacionCompraDetalleDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.pc.MaquinaFiscalDTO;
 import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.mapper.ReembolsoDetalleMapper;
+import com.rolandopalermo.facturacion.ec.mapper.ReembolsoDetalleFacturaMapper;
 import com.rolandopalermo.facturacion.ec.modelo.InfoTributaria;
 import com.rolandopalermo.facturacion.ec.modelo.ReembolsoDetalle;
+import com.rolandopalermo.facturacion.ec.modelo.factura.ReembolsoDetalleFactura;
 import com.rolandopalermo.facturacion.ec.modelo.liquidacion.InfoLiquidacionCompra;
 import com.rolandopalermo.facturacion.ec.modelo.liquidacion.LiquidacionCompra;
 import com.rolandopalermo.facturacion.ec.modelo.liquidacion.LiquidacionCompraDetalle;
@@ -22,13 +23,13 @@ public class LiquidacionCompraMapper extends AbstractComprobanteMapper<Liquidaci
 
     private Mapper<InfoLiquidacionCompraDTO, InfoLiquidacionCompra> infoLiquidacionCompraMapper;
     private Mapper<LiquidacionCompraDetalleDTO, LiquidacionCompraDetalle> liquidacionCompraDetalleMapper;
-    private Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper;
+    private Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> reembolsoDetalleMapper;
     private Mapper<MaquinaFiscalDTO, MaquinaFiscal> maquinaFiscalMapper;
 
     public LiquidacionCompraMapper() {
         this.infoLiquidacionCompraMapper = new InfoLiquidacionCompraMapper();
         this.liquidacionCompraDetalleMapper = new LiquidacionCompraDetalleMapper();
-        this.reembolsoDetalleMapper = new ReembolsoDetalleMapper();
+        this.reembolsoDetalleMapper = new ReembolsoDetalleFacturaMapper();
         this.maquinaFiscalMapper = new MaquinaFiscalMapper();
     }
 
@@ -89,11 +90,11 @@ public class LiquidacionCompraMapper extends AbstractComprobanteMapper<Liquidaci
         this.liquidacionCompraDetalleMapper = liquidacionCompraDetalleMapper;
     }
 
-    public Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> getReembolsoDetalleMapper() {
+    public Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> getReembolsoDetalleMapper() {
         return reembolsoDetalleMapper;
     }
 
-    public void setReembolsoDetalleMapper(Mapper<ReembolsoDetalleDTO, ReembolsoDetalle> reembolsoDetalleMapper) {
+    public void setReembolsoDetalleMapper(Mapper<ReembolsoDetalleDTO, ReembolsoDetalleFactura> reembolsoDetalleMapper) {
         this.reembolsoDetalleMapper = reembolsoDetalleMapper;
     }
 
