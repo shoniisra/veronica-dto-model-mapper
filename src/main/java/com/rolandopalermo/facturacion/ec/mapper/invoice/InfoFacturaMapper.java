@@ -1,15 +1,16 @@
 package com.rolandopalermo.facturacion.ec.mapper.invoice;
 
+import com.rolandopalermo.facturacion.ec.dto.CompensacionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.PagoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.TotalImpuestoDTO;
-import com.rolandopalermo.facturacion.ec.dto.v1.invoice.CompensacionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.invoice.InfoFacturaDTO;
+import com.rolandopalermo.facturacion.ec.mapper.CompensacionMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.mapper.PagoMapper;
 import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoMapper;
+import com.rolandopalermo.facturacion.ec.modelo.Compensacion;
 import com.rolandopalermo.facturacion.ec.modelo.Pago;
 import com.rolandopalermo.facturacion.ec.modelo.TotalImpuesto;
-import com.rolandopalermo.facturacion.ec.modelo.factura.Compensacion;
 import com.rolandopalermo.facturacion.ec.modelo.factura.InfoFactura;
 
 public class InfoFacturaMapper implements Mapper<InfoFacturaDTO, InfoFactura> {

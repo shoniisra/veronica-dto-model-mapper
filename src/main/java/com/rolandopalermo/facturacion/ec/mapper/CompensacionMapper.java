@@ -1,8 +1,7 @@
-package com.rolandopalermo.facturacion.ec.mapper.invoice;
+package com.rolandopalermo.facturacion.ec.mapper;
 
-import com.rolandopalermo.facturacion.ec.dto.v1.invoice.CompensacionDTO;
-import com.rolandopalermo.facturacion.ec.mapper.Mapper;
-import com.rolandopalermo.facturacion.ec.modelo.factura.Compensacion;
+import com.rolandopalermo.facturacion.ec.dto.CompensacionDTO;
+import com.rolandopalermo.facturacion.ec.modelo.Compensacion;
 
 public class CompensacionMapper implements Mapper<CompensacionDTO, Compensacion> {
 

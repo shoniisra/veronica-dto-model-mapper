@@ -1,18 +1,23 @@
 package com.rolandopalermo.facturacion.ec.mapper.cm;
 
+import com.rolandopalermo.facturacion.ec.dto.CompensacionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.TotalImpuestoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.cm.InfoNotaCreditoDTO;
+import com.rolandopalermo.facturacion.ec.mapper.CompensacionMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.mapper.TotalImpuestoNotaCreditoMapper;
+import com.rolandopalermo.facturacion.ec.modelo.Compensacion;
 import com.rolandopalermo.facturacion.ec.modelo.TotalImpuesto;
 import com.rolandopalermo.facturacion.ec.modelo.notacredito.InfoNotaCredito;
 
 public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNotaCredito> {
 
     private Mapper<TotalImpuestoDTO, TotalImpuesto> totalImpuestoNotaCreditoMapper;
+    private Mapper<CompensacionDTO, Compensacion> compensacionMapper;
 
     public InfoNotaCreditoMapper() {
         this.totalImpuestoNotaCreditoMapper = new TotalImpuestoNotaCreditoMapper();
+        this.compensacionMapper = new CompensacionMapper();
     }
 
     @Override
@@ -34,6 +39,9 @@ public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNot
         infoNotaCredito.setValorModificacion(infoNotaCreditoDTO.getValorModificacion());
         infoNotaCredito.setMotivo(infoNotaCreditoDTO.getMotivo());
         infoNotaCredito.setTotalImpuesto(getTotalImpuestoMapper().convertAll(infoNotaCreditoDTO.getTotalImpuesto()));
+        if (infoNotaCreditoDTO.getCompensacion() != null && !infoNotaCreditoDTO.getCompensacion().isEmpty()) {
+            infoNotaCredito.setCompensacion(getCompensacionMapper().convertAll(infoNotaCreditoDTO.getCompensacion()));
+        }
         return infoNotaCredito;
     }
 
@@ -45,4 +53,11 @@ public class InfoNotaCreditoMapper implements Mapper<InfoNotaCreditoDTO, InfoNot
         this.totalImpuestoNotaCreditoMapper = totalImpuestoNotaCreditoMapper;
     }
 
+    public Mapper<CompensacionDTO, Compensacion> getCompensacionMapper() {
+        return compensacionMapper;
+    }
+
+    public void setCompensacionMapper(Mapper<CompensacionDTO, Compensacion> compensacionMapper) {
+        this.compensacionMapper = compensacionMapper;
+    }
 }
