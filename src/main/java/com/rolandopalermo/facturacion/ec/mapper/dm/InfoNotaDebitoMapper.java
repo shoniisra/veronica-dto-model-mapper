@@ -1,17 +1,27 @@
 package com.rolandopalermo.facturacion.ec.mapper.dm;
 
+import com.rolandopalermo.facturacion.ec.dto.CompensacionDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.ImpuestoDTO;
+import com.rolandopalermo.facturacion.ec.dto.v1.PagoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.dm.InfoNotaDebitoDTO;
+import com.rolandopalermo.facturacion.ec.mapper.CompensacionMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
+import com.rolandopalermo.facturacion.ec.mapper.PagoMapper;
+import com.rolandopalermo.facturacion.ec.modelo.Compensacion;
 import com.rolandopalermo.facturacion.ec.modelo.Impuesto;
+import com.rolandopalermo.facturacion.ec.modelo.Pago;
 import com.rolandopalermo.facturacion.ec.modelo.notadebito.InfoNotaDebito;
 
 public class InfoNotaDebitoMapper implements Mapper<InfoNotaDebitoDTO, InfoNotaDebito> {
 
     private Mapper<ImpuestoDTO, Impuesto> impuestoNotaDebitoMapper;
+    private Mapper<CompensacionDTO, Compensacion> compensacionMapper;
+    private Mapper<PagoDTO, Pago> pagoMapper;
 
     public InfoNotaDebitoMapper() {
         this.impuestoNotaDebitoMapper = new ImpuestoMapper();
+        this.pagoMapper = new PagoMapper();
+        this.compensacionMapper = new CompensacionMapper();
     }
 
     @Override
@@ -32,6 +42,12 @@ public class InfoNotaDebitoMapper implements Mapper<InfoNotaDebitoDTO, InfoNotaD
         if (infoNotaDebitoDTO.getImpuesto() != null && !infoNotaDebitoDTO.getImpuesto().isEmpty()) {
             infoNotaDebito.setImpuesto(getTotalImpuestoMapper().convertAll(infoNotaDebitoDTO.getImpuesto()));
         }
+        if (infoNotaDebitoDTO.getPagos() != null && !infoNotaDebitoDTO.getPagos().isEmpty()) {
+            infoNotaDebito.setPago(getPagoMapper().convertAll(infoNotaDebitoDTO.getPagos()));
+        }
+        if (infoNotaDebitoDTO.getCompensacion() != null && !infoNotaDebitoDTO.getCompensacion().isEmpty()) {
+            infoNotaDebito.setCompensacion(getCompensacionMapper().convertAll(infoNotaDebitoDTO.getCompensacion()));
+        }
         infoNotaDebito.setValorTotal(infoNotaDebitoDTO.getValorTotal());
         return infoNotaDebito;
     }
@@ -42,6 +58,22 @@ public class InfoNotaDebitoMapper implements Mapper<InfoNotaDebitoDTO, InfoNotaD
 
     public void setTotalImpuestoMapper(Mapper<ImpuestoDTO, Impuesto> impuestoNotaDebitoMapper) {
         this.impuestoNotaDebitoMapper = impuestoNotaDebitoMapper;
+    }
+
+    public Mapper<CompensacionDTO, Compensacion> getCompensacionMapper() {
+        return compensacionMapper;
+    }
+
+    public void setCompensacionMapper(Mapper<CompensacionDTO, Compensacion> compensacionMapper) {
+        this.compensacionMapper = compensacionMapper;
+    }
+
+    public Mapper<PagoDTO, Pago> getPagoMapper() {
+        return pagoMapper;
+    }
+
+    public void setPagoMapper(Mapper<PagoDTO, Pago> pagoMapper) {
+        this.pagoMapper = pagoMapper;
     }
 
 }
