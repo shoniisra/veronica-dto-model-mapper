@@ -3,12 +3,13 @@ package com.rolandopalermo.facturacion.ec.mapper.withholding;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.CompraCajBananoDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.DividendosDTO;
 import com.rolandopalermo.facturacion.ec.dto.v1.withholding.RetencionDTO;
+import com.rolandopalermo.facturacion.ec.mapper.AbstractComprobanteMapper;
 import com.rolandopalermo.facturacion.ec.mapper.Mapper;
 import com.rolandopalermo.facturacion.ec.modelo.retencion.CompraCajBanano;
 import com.rolandopalermo.facturacion.ec.modelo.retencion.Dividendos;
 import com.rolandopalermo.facturacion.ec.modelo.retencion.Retencion;
 
-public class RetencionMapper implements Mapper<RetencionDTO, Retencion> {
+public class RetencionMapper extends AbstractComprobanteMapper<RetencionDTO> implements Mapper<RetencionDTO, Retencion> {
 
     private Mapper<DividendosDTO, Dividendos> dividendosMapper;
     private Mapper<CompraCajBananoDTO, CompraCajBanano> compraCajBananoMapper;
